@@ -17,7 +17,10 @@ app = FastAPI(title="ClipFlow AI API", description="Core backend pipeline for Cl
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://client-j0dda2jyc-gopalakrishna-kondabolus-projects.vercel.app",
+        "http://localhost:3000"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
