@@ -18,6 +18,7 @@ app = FastAPI(title="ClipFlow AI API", description="Core backend pipeline for Cl
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "https://client-pi-seven-94.vercel.app",
         "https://client-j0dda2jyc-gopalakrishna-kondabolus-projects.vercel.app",
         "http://localhost:3000"
     ],
@@ -222,7 +223,7 @@ async def generate_linkedin_carousel(request: LinkedinCarouselRequest):
                 break
             except Exception as inner_e:
                 error_msg = str(inner_e)
-                if attempt == 0 and ("429" in error_msg or "rate_limit" in error_msg.lower() or "RESOURCE_EXHAUSTED" in error_msg.upper()):
+                if ... and ("429" in error_msg or "rate_limit" in error_msg.lower() or "RESOURCE_EXHAUSTED" in error_msg.upper()):
                     await asyncio.sleep(10)
                     continue
                 raise inner_e
