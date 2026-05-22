@@ -56,7 +56,10 @@ class ShortsOptimizerRequest(BaseModel):
 
 async def scrape_content(url: str) -> str:
     try:
-        async with httpx.AsyncClient(follow_redirects=True) as http_client:
+        # Added only a standard browser header to stop websites from blocking your Render server
+        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
+        
+        async with httpx.AsyncClient(follow_redirects=True, headers=headers) as http_client:
             response = await http_client.get(url, timeout=15.0)
             response.raise_for_status()
             soup = BeautifulSoup(response.text, "html.parser")
